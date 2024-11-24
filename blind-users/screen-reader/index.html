@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blind Accessibility</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap">
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #2c3e50;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #1abc9c;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #f4f4f4;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+
+        .hero img {
+            margin-top: 30px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Cards Section */
+        .cards {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 40px auto;
+            max-width: 1200px;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            flex: 1 1 calc(33.333% - 20px);
+            max-width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .card button {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            color: white;
+            background-color: #1abc9c;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .card button:hover {
+            background-color: #16a085;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <h1>Accessibility for All</h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="../../index.html">Blind</a></li>
+            <li><a href="../../index.html">Deaf</a></li>
+            <li><a href="../../index.html">Mute</a></li>
+            <li><a href="../../index.html">Shared</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Understanding Blindness</h1>
+        <p>
+            Blindness refers to a complete or significant loss of vision, impacting daily life and activities.
+            It can be caused by congenital conditions, injuries, or diseases like glaucoma and diabetes.
+        </p>
+        <p>
+            People with blindness often rely on assistive technologies, mobility aids, and braille systems to navigate and engage with their surroundings.
+        </p>
+        <img src="../../blndr.png" alt="Blind Accessibility Image">
+    </section>
+
+    <!-- Cards Section -->
+    <section class="cards">
+        <div class="card">
+            <h3>Braille Display</h3>
+            <p>A device that converts text to braille, enabling blind users to read digital content with their fingertips.</p>
+            <button onclick="addToCart('Braille Display')">Add to Cart</button>
+        </div>
+        <div class="card">
+            <h3>Screen Reader Software</h3>
+            <p>Software that reads the text displayed on a computer screen aloud for blind users, enhancing accessibility.</p>
+            <button onclick="addToCart('Screen Reader Software')">Add to Cart</button>
+        </div>
+        <div class="card">
+            <h3>Walking Cane with Sensors</h3>
+            <p>A smart cane equipped with sensors and feedback systems to help blind users navigate their surroundings safely.</p>
+            <button onclick="addToCart('Walking Cane with Sensors')">Add to Cart</button>
+        </div>
+    </section>
+
+    <!-- New Informative Section -->
+    <section class="hero">
+        <h1>Did You Know?</h1>
+        <p>
+            According to the World Health Organization, at least 2.2 billion people globally have a vision impairment or blindness. 
+        </p>
+        <p>
+            Many barriers, such as limited access to education and assistive tools, still exist for individuals with vision impairments. By increasing awareness and improving accessibility, we can create a more inclusive world for everyone.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Accessibility for All. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Speech Synthesis -->
+    <script>
+        // Function to speak text
+        function speakText(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 1; 
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Read page content automatically
+        document.addEventListener('DOMContentLoaded', () => {
+            const textToRead = document.body.innerText;
+            speakText(textToRead);
+        });
+
+        function addToCart(item) {
+            alert(`${item} has been added to your cart.`);
+        }
+    </script>
+</body>
+</html>

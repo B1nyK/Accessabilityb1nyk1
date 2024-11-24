@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Assistant with TTS</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+    
+        /* Navbar Styling */
+        nav {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+    
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap; /* Ensure items wrap on small screens */
+            justify-content: center;
+        }
+    
+        nav ul li {
+            margin: 0 15px;
+            position: relative;
+        }
+    
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+    
+        nav ul li a:hover {
+            color: #1abc9c;
+            text-decoration: underline;
+        }
+    
+        /* Content Section */
+        .container {
+            max-width: 90%; /* Adjusts width for smaller screens */
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+    
+        h1, h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    
+        h2 {
+            border-bottom: 2px solid #1abc9c;
+            padding-bottom: 10px;
+        }
+    
+        p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    
+        .output {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 1.2em;
+            color: #2c3e50;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        textarea {
+            width: 100%; /* Ensure textarea adjusts to full width */
+            height: 100px;
+            padding: 10px;
+            font-size: 1.1em;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-top: 20px;
+            resize: none;
+        }
+    
+        /* Buttons */
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap; /* Wrap buttons on smaller screens */
+            margin-top: 20px;
+        }
+    
+        button {
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: #1abc9c;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        button:hover {
+            background: #16a085;
+            transform: translateY(-3px);
+        }
+    
+        button:active {
+            transform: translateY(1px);
+        }
+    
+        /* Footer Styling */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
+        }
+    
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+    
+        /* Media Queries for Responsiveness */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 15px;
+            }
+    
+            h2 {
+                font-size: 1.5rem;
+            }
+    
+            p {
+                font-size: 1rem;
+            }
+    
+            .output {
+                font-size: 1rem;
+            }
+    
+            button {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+        }
+    
+        @media (max-width: 768px) {
+            nav ul li {
+                margin: 0 10px;
+            }
+    
+            h2 {
+                font-size: 1.3rem;
+            }
+    
+            p {
+                font-size: 0.9rem;
+            }
+    
+            button {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+        }
+    
+        @media (max-width: 480px) {
+            h1, h2 {
+                font-size: 1.2rem;
+            }
+    
+            .container {
+                padding: 10px;
+            }
+    
+            p {
+                font-size: 0.8rem;
+            }
+    
+            .output {
+                font-size: 0.9rem;
+            }
+    
+            button {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+    
+            nav ul {
+                flex-direction: column; /* Stack menu items */
+            }
+    
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+    
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <h1>Accessibility for All</h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="../../index.html">Blind</a></li>
+            <li><a href="../../index.html">Deaf</a></li>
+            <li><a href="../../index.html">Mute</a></li>
+            <li><a href="../../index.html">Shared</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+        <h1>Voice Assistant with Text-to-Speech</h1>
+        <p>Use the assistant to speak commands or type messages to hear them spoken aloud!</p>
+
+        <!-- Voice Assistant -->
+        <h2>Voice Assistant</h2>
+        <p>Click "Start Listening" to speak your command. The assistant will process and respond below:</p>
+        <div class="buttons">
+            <button id="startListening">Start Listening</button>
+            <button id="stopListening">Stop Listening</button>
+        </div>
+        <div class="output" id="voiceOutput">Waiting for your command...</div>
+
+        <!-- Text-to-Speech -->
+        <h2>Text-to-Speech</h2>
+        <p>Type a message below and click "Speak" to hear it:</p>
+        <textarea id="messageInput" placeholder="Type your message here..."></textarea>
+        <div class="buttons">
+            <button id="speakButton">Speak</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Accessibility for All. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Voice Assistant Functionality
+        const startListeningButton = document.getElementById('startListening');
+        const stopListeningButton = document.getElementById('stopListening');
+        const voiceOutput = document.getElementById('voiceOutput');
+    
+        let recognition;
+        if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.interimResults = false;
+    
+            recognition.onstart = () => {
+                voiceOutput.textContent = 'Listening for your command...';
+            };
+    
+            recognition.onresult = (event) => {
+                const command = event.results[0][0].transcript.toLowerCase();
+                voiceOutput.textContent = `You said: "${command}"`;
+                processCommand(command);  // Process the command here
+            };
+    
+            recognition.onerror = (event) => {
+                voiceOutput.textContent = `Error: ${event.error}`;
+            };
+    
+            recognition.onend = () => {
+                voiceOutput.textContent += ' (Listening stopped)';
+            };
+        } else {
+            voiceOutput.textContent = 'Speech Recognition is not supported in this browser.';
+        }
+    
+        // Start Listening
+        startListeningButton.addEventListener('click', () => {
+            if (recognition) {
+                recognition.start();
+            }
+        });
+    
+        // Stop Listening
+        stopListeningButton.addEventListener('click', () => {
+            if (recognition) {
+                recognition.stop();
+            }
+        });
+    
+        // Process Commands
+        const processCommand = (command) => {
+            const utterance = new SpeechSynthesisUtterance();
+            console.log("Processing command: ", command); // Debugging line
+    
+            // Match commands to their respective pages
+            if (command.includes('take me to blind')) {
+                utterance.text = "Navigating to the Blind Users section.";
+                window.speechSynthesis.speak(utterance);
+                setTimeout(() => window.location.href = "../../blind-users/index.html", 2000);
+            } else if (command.includes('take me to deaf')) {
+                utterance.text = "Navigating to the Deaf Users section.";
+                window.speechSynthesis.speak(utterance);
+                setTimeout(() => window.location.href = "../../deaf-users/index.html", 2000);
+            } else if (command.includes('take me to mute')) {
+                utterance.text = "Navigating to the Mute Users section.";
+                window.speechSynthesis.speak(utterance);
+                setTimeout(() => window.location.href = "../../mute-users/index.html", 2000);
+            } else if (command.includes('take me to shared')) {
+                utterance.text = "Navigating to the Shared Features section.";
+                window.speechSynthesis.speak(utterance);
+                setTimeout(() => window.location.href = "../../shared-features/index.html", 2000);
+            } else if (command.includes('hello')) {
+                utterance.text = "Hello! How can I assist you today?";
+            } else if (command.includes('how are you')) {
+                utterance.text = "I'm just a program, but I'm here to help!";
+            } else if (command.includes('time')) {
+                const currentTime = new Date().toLocaleTimeString();
+                utterance.text = `The current time is ${currentTime}.`;
+            } else if (command.includes('date')) {
+                const currentDate = new Date().toLocaleDateString();
+                utterance.text = `Today's date is ${currentDate}.`;
+            } else {
+                utterance.text = "Sorry, I didn't understand that.";
+            }
+    
+            // Speak out the response
+            window.speechSynthesis.speak(utterance);
+        };
+    
+        // Text-to-Speech Functionality
+        const speakButton = document.getElementById('speakButton');
+        const messageInput = document.getElementById('messageInput');
+    
+        speakButton.addEventListener('click', () => {
+            const message = messageInput.value.trim();
+            if (!message) {
+                alert('Please enter a message to speak.');
+                return;
+            }
+            const utterance = new SpeechSynthesisUtterance(message);
+            utterance.lang = 'en-US';
+            window.speechSynthesis.speak(utterance);
+        });
+    </script>
+    
+</body>
+</html>

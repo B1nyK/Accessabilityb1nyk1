@@ -1,0 +1,341 @@
+<!-- /deaf-users/real-time-captioning/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility for Deaf Users</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+    
+        /* Navbar Styling */
+        nav {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+    
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+            justify-content: center;
+        }
+    
+        nav ul li {
+            margin: 0 10px; /* Adjusted for better spacing on small screens */
+            position: relative;
+        }
+    
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+    
+        nav ul li a:hover {
+            color: #1abc9c;
+            text-decoration: underline;
+        }
+    
+        /* Hero Section */
+        .hero {
+            background-color: #f4f4f4;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-bottom: 5px solid #1abc9c;
+        }
+    
+        .hero h2 {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+    
+        .hero p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+    
+        .hero img {
+            max-width: 90%; /* Reduced width for smaller screens */
+            height: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+    
+        /* Functionality Section */
+        .functionality {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+    
+        .functionality h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            border-bottom: 2px solid #1abc9c;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+    
+        .functionality p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+    
+        .captions {
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+            font-size: 1.2em;
+            color: #2c3e50;
+            border-radius: 10px;
+            min-height: 100px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        /* Buttons */
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap; /* Wraps buttons on smaller screens */
+        }
+    
+        button {
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: #1abc9c;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        button:hover {
+            background: #16a085;
+            transform: translateY(-3px);
+        }
+    
+        button:active {
+            transform: translateY(1px);
+        }
+    
+        /* Footer Styling */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
+        }
+    
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+    
+        /* Media Queries */
+        @media (max-width: 1024px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+    
+            .hero p {
+                font-size: 1rem;
+            }
+    
+            .functionality h2 {
+                font-size: 1.5rem;
+            }
+    
+            .functionality p {
+                font-size: 1rem;
+            }
+    
+            .captions {
+                font-size: 1rem;
+            }
+        }
+    
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+    
+            .hero p {
+                font-size: 0.9rem;
+            }
+    
+            .buttons button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+    
+            nav ul li {
+                margin: 0 5px;
+            }
+    
+            .functionality h2 {
+                font-size: 1.3rem;
+            }
+    
+            .functionality p {
+                font-size: 0.9rem;
+            }
+        }
+    
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+    
+            .hero p {
+                font-size: 0.8rem;
+            }
+    
+            .hero img {
+                max-width: 100%;
+            }
+    
+            .functionality h2 {
+                font-size: 1.1rem;
+            }
+    
+            .functionality p {
+                font-size: 0.8rem;
+            }
+    
+            .buttons button {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <h1>Accessibility for All</h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="../../index.html">Blind</a></li>
+            <li><a href="../../index.html">Deaf</a></li>
+            <li><a href="../../index.html">Mute</a></li>
+            <li><a href="../../index.html">Shared</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h2>Understanding Deaf Accessibility</h2>
+        <p>
+            Deafness affects millions of individuals globally, making communication a significant challenge. 
+            Real-time captioning is a transformative tool, allowing deaf users to engage with conversations and multimedia in real-time.
+        </p>
+        <p>
+            By leveraging AI and machine learning, our real-time captioning feature converts spoken words into text instantly, 
+            ensuring inclusivity and accessibility for deaf individuals in various settings.
+        </p>
+        <img src="../../df.png" alt="Deaf Accessibility">
+    </div>
+
+    <!-- Functionality Section -->
+    <div class="functionality">
+        <h2>Real-Time Captioning Tool</h2>
+        <p>Start speaking into your microphone, and captions will appear below in real-time:</p>
+        <div class="captions" id="captions">Waiting for input...</div>
+        <div class="buttons">
+            <button id="startCaptions">Start Captions</button>
+            <button id="stopCaptions">Stop Captions</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Accessibility for All. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Real-Time Captioning Functionality
+        const startButton = document.getElementById('startCaptions');
+        const stopButton = document.getElementById('stopCaptions');
+        const captionsDiv = document.getElementById('captions');
+
+        let recognition;
+        if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.interimResults = true;
+
+            recognition.onresult = (event) => {
+                const transcript = Array.from(event.results)
+                    .map(result => result[0])
+                    .map(result => result.transcript)
+                    .join('');
+                captionsDiv.textContent = transcript;
+            };
+
+            recognition.onerror = (event) => {
+                captionsDiv.textContent = `Error: ${event.error}`;
+            };
+        } else {
+            captionsDiv.textContent = "Speech Recognition is not supported in this browser.";
+        }
+
+        // Start Captions
+        startButton.addEventListener('click', () => {
+            if (recognition) {
+                captionsDiv.textContent = "Listening...";
+                recognition.start();
+            }
+        });
+
+        // Stop Captions
+        stopButton.addEventListener('click', () => {
+            if (recognition) {
+                recognition.stop();
+                captionsDiv.textContent = "Captions stopped.";
+            }
+        });
+    </script>
+</body>
+</html>

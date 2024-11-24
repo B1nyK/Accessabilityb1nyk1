@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility for All</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: #f5f7fa;
+            color: #333;
+        }
+    
+        /* Navbar Styling */
+        nav {
+            background-color: #34495e;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Allows wrapping on smaller screens */
+        }
+    
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap; /* Wraps items on smaller screens */
+        }
+    
+        nav ul li {
+            margin: 0 10px; /* Adjusted for tighter spacing */
+        }
+    
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+    
+        nav ul li a:hover {
+            color: #1abc9c;
+        }
+    
+        /* Parallax Section */
+        .parallax {
+            background-image: url('emp.jpg'); /* Replace with your image */
+            height: 300px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center; /* Ensures text remains centered */
+        }
+    
+        .parallax h2 {
+            color: white;
+            font-size: 2em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            padding: 0 10px; /* For better spacing on smaller screens */
+        }
+    
+        /* Content Styling */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+    
+        section {
+            margin-bottom: 40px;
+        }
+    
+        section h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #1abc9c;
+            padding-bottom: 5px;
+            text-align: center;
+        }
+    
+        section p {
+            color: #7f8c8d;
+        }
+    
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+    
+        .feature {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    
+        .feature:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+    
+        .feature h3 {
+            margin-bottom: 10px;
+        }
+    
+        .feature p {
+            color: #7f8c8d;
+        }
+    
+        .feature a {
+            text-decoration: none;
+            color: white;
+            background: #1abc9c;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+    
+        .feature a:hover {
+            background: #16a085;
+        }
+    
+        /* Buttons */
+        .btn {
+            background: #1abc9c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+    
+        .btn:hover {
+            background: #16a085;
+            transform: translateY(-2px);
+        }
+    
+        .btn:active {
+            transform: translateY(0);
+        }
+    
+        /* Pricing Section */
+        .pricing-section {
+            margin: 40px 0;
+        }
+    
+        .cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+    
+        .card {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            flex: 1 1 calc(33.333% - 20px); /* Three cards per row */
+            max-width: 350px;
+        }
+    
+        .card:hover {
+            transform: scale(1.05);
+        }
+    
+        /* Contact Us Section */
+        .contact-us {
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 10px;
+        }
+    
+        .contact-us form {
+            max-width: 600px;
+            margin: auto;
+        }
+    
+        .contact-us input,
+        .contact-us textarea,
+        .contact-us button {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+        }
+    
+        .contact-us button {
+            background: white;
+            color: #1abc9c;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+    
+        .contact-us button:hover {
+            background: #1abc9c;
+            color: white;
+        }
+    
+        /* Footer Styling */
+        footer {
+            background: #34495e;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            border-top: 5px solid #1abc9c;
+        }
+    
+        /* Media Queries */
+        @media (max-width: 1024px) {
+            .parallax {
+                height: 250px;
+            }
+    
+            .parallax h2 {
+                font-size: 1.8em;
+            }
+    
+            .cards .card {
+                flex: 1 1 calc(50% - 20px); /* Two cards per row */
+            }
+    
+            .features {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+    
+            .parallax {
+                height: 200px;
+            }
+    
+            .parallax h2 {
+                font-size: 1.5em;
+            }
+    
+            .cards .card {
+                flex: 1 1 calc(100% - 20px); /* One card per row */
+            }
+        }
+    
+        @media (max-width: 480px) {
+            .parallax {
+                height: 150px;
+            }
+    
+            .parallax h2 {
+                font-size: 1.2em;
+            }
+    
+            .contact-us {
+                padding: 20px;
+            }
+    
+            .contact-us input,
+            .contact-us textarea,
+            .contact-us button {
+                padding: 10px;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <h1>Accessibility for All</h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blind-users/screen-reader/index.html">Blind</a></li>
+            <li><a href="deaf-users/real-time-captioning/index.html">Deaf</a></li>
+            <li><a href="mute-users/text-to-speech/index.html">Mute</a></li>
+            <li><a href="shared-features/multilanguage/index.html">Shared</a></li>
+        </ul>
+    </nav>
+
+    <!-- Parallax Section -->
+    <div class="parallax">
+        <h2>Empowering Through Technology</h2>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <section>
+            <h2>What We Offer</h2>
+            <p>We provide AI-driven accessibility tools tailored for:</p>
+            <div class="features">
+                <div class="feature">
+                    <h3>Blind Users</h3>
+                    <p>Screen readers and virtual AI guides for seamless navigation and interaction.</p>
+                    <a href="blind-users/screen-reader/index.html">Learn More</a>
+                </div>
+                <div class="feature">
+                    <h3>Deaf Users</h3>
+                    <p>Real-time captioning and AI-powered sign language translation for better communication.</p>
+                    <a href="deaf-users/real-time-captioning/index.html">Learn More</a>
+                </div>
+                <div class="feature">
+                    <h3>Mute Users</h3>
+                    <p>Text-to-speech tools and AI voice avatars to enable communication effectively.</p>
+                    <a href="mute-users/text-to-speech/index.html">Learn More</a>
+                </div>
+                <div class="feature">
+                    <h3>Shared Features</h3>
+                    <p>Multi-language support and content simplification using NLP for global inclusivity.</p>
+                    <a href="shared-features/multilanguage/index.html">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section">
+            <h2>Our Pricing</h2>
+            <div class="toggle">
+                <div class="sub">
+                    <span class="circle" id="toggle-circle"></span>
+                </div>
+                <label>Toggle Pricing: Monthly ↔ Annually</label>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <h3>Basic</h3>
+                    <p class="price" id="basic-price">$199.99</p>
+                    <p>500 GB Storage</p>
+                    <p>2 Users Allowed</p>
+                    <p>Send up to 3 GB</p>
+                    <button class="btn">Learn More</button>
+                </div>
+                <div class="card">
+                    <h3>Professional</h3>
+                    <p class="price" id="professional-price">$249.99</p>
+                    <p>1 TB Storage</p>
+                    <p>5 Users Allowed</p>
+                    <p>Send up to 10 GB</p>
+                    <button class="btn">Learn More</button>
+                </div>
+                <div class="card">
+                    <h3>Master</h3>
+                    <p class="price" id="master-price">$399.99</p>
+                    <p>2 TB Storage</p>
+                    <p>10 Users Allowed</p>
+                    <p>Send up to 20 GB</p>
+                    <button class="btn">Learn More</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us -->
+        <section class="contact-us">
+            <h3>Contact Us</h3>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Accessibility for All. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const toggleCircle = document.getElementById('toggle-circle');
+        const basicPrice = document.getElementById('basic-price');
+        const professionalPrice = document.getElementById('professional-price');
+        const masterPrice = document.getElementById('master-price');
+
+        toggleCircle.addEventListener('click', () => {
+            const isActive = toggleCircle.classList.toggle('active');
+            basicPrice.textContent = isActive ? '$19.99' : '$199.99';
+            professionalPrice.textContent = isActive ? '$24.99' : '$249.99';
+            masterPrice.textContent = isActive ? '$39.99' : '$399.99';
+        });
+    </script>
+</body>
+</html>

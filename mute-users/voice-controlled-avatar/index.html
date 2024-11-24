@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice-Controlled Avatar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #f4f4f9;
+        }
+        #avatar {
+            width: 200px;
+            height: 200px;
+            background: url('https://i.imgur.com/iwgQmKl.png') no-repeat center;
+            background-size: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        #chat {
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+        #userInput {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 16px;
+            background-color: #6200ea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3700b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="avatar"></div>
+    <div id="chat">
+        <h1>Voice-Controlled Avatar</h1>
+        <p id="botResponse">Hi! I’m your assistant. Use commands to navigate or type something below.</p>
+        <input type="text" id="userInput" placeholder="Type your command here...">
+        <button onclick="handleCommand()">Submit</button>
+    </div>
+
+    <script>
+         // Function to process user commands
+function handleCommand() {
+    const input = document.getElementById("userInput").value.toLowerCase().trim();
+    const botResponse = document.getElementById("botResponse");
+
+    if (!input) {
+        botResponse.textContent = "Please type a command!";
+        return;
+    }
+
+    // Recognized commands
+    const commands = {
+        "go to screen reader": "../blind-users/screen-reader/index.html",
+        "go to virtual guide": "../blind-users/virtual-guide/index.html",
+        "go to real-time captioning": "../deaf-users/real-time-captioning/index.html",
+        "go to sign language translation": "../deaf-users/sign-language-translation/index.html",
+        "go to text to speech": "../mute-users/text-to-speech/index.html",
+        "go to voice-controlled avatar": "../mute-users/voice-controlled-avatar/index.html",
+        "go to content simplification": "../shared-features/content-simplification/index.html",
+        "go to multilanguage": "../shared-features/multilanguage/index.html"
+    };
+
+    // Check if command exists
+    if (commands[input]) {
+        botResponse.textContent = `Navigating to ${input}...`;
+        speak(`Navigating to ${input}.`);
+        // Redirect to the corresponding page
+        setTimeout(() => {
+            window.location.href = commands[input];
+        }, 2000); // Delay to allow TTS to finish
+    } else {
+        botResponse.textContent = "Sorry, I don't recognize that command.";
+        speak("Sorry, I don't recognize that command.");
+    }
+
+    // Clear input field
+    document.getElementById("userInput").value = "";
+}
+
+// Function to make the bot speak
+function speak(text) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    utterance.pitch = 1;
+    utterance.rate = 1;
+    utterance.volume = 1;
+    window.speechSynthesis.speak(utterance);
+}
+
+    </script>
+</body>
+</html>
